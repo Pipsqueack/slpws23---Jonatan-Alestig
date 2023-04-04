@@ -1,9 +1,9 @@
 h2 Register
-form action='/register' method='get'
-    label for="firstName" First name <br>
-    input name="firstName" id="firstName" placeholder="Pliz enter 1stNam" type="text" <br> 
-    label for="lastName" Last name <br>
-    input name="lastName" id="lastName" placeholder="Pliz enter lastNam" type="text" <br> 
+form action='/sign_up' method='post'
+    label for="username" Username <br>
+    input name="username" id="username" placeholder="Enter username" type="text" <br> 
     label for="password" Password <br>
-    input name="password" id="password" type="password" <br> 
-    input type="submit" value="Register"
+    input name="password" id="password" placeholder="Enter password" type="password" <br> 
+    input name="password_confirmation" id="password_confirmation" placeholder="Repeat password" type="password"/
+    label for="sign_up" <br>
+    input type="submit" name="sign_up" value="Sign up"

@@ -1,9 +1,18 @@
 h1 Writing time! 
 
 button Add new songtext
-section Your lyrics
-    
-h1 = result
+form action='/new_text' method='post'
+    label for="title" Your title <br>
+    input name="title" id="title" placeholder="Enter title" type="text" <br> 
+    label for="text_content" Your lyrics <br>
+    input name="text_content" id="text_content" placeholder="Write your lyrics here" type="text" <br> 
+    label for="submit" <br>
+    input type="submit" name="submit" value="Submit"
 
-p Albumet du har sökt efter heter #{result["Title"]}.
-p Artisten du har sökt efter heter #{result["Name"]}.
+h2 Your lyrics
+section#your_lyrics
+    -result.each do |lyrics|
+       div.lyrics_box
+            h3 #{lyrics["title"]}
+            p #{lyrics["text_content"]}
+/                a href="albums/#{text['AlbumId']}/edit" uppdatera     

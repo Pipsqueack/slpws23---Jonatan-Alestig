@@ -6,6 +6,7 @@ html lang="en"
     meta http-equiv="X-UA-Compatible" content="ie=edge"/
     link rel="stylesheet" href="/css/style.css"/
     title Lyrical
+
   body
     header
         img logga_temp 
@@ -13,10 +14,21 @@ html lang="en"
             a href="/" Home
             a href="/your_lyrics" Begin writing
             a href="/idea_generator" Ideagenerator
-            a href="/sign_up" Sign up
-            a href="/login" Login
-          
-    ==yield
+        -if session[:user_id] != nil
+          h1 #{session[:username]}
+          form action='/logout' method='post'
+              input type="submit" name="logout" value="Logout"        
+        -else 
+          a href="/sign_up" Sign up
+          a href="/login" Login 
+    div#main
+      h2.alert #{session[:alert]}
+
+      /-if session[:alert] != nil
+        -sleep(3)
+        -session.delete(:alert)
+
+      ==yield
 
     footer 
       p footertext

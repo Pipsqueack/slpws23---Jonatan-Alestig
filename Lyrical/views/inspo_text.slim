@@ -1,3 +1,6 @@
-section Inspo text
-h1 = emil
-
+- result = inspo_func
+section#inspo_text
+    h2 #{result["title"]}
+    p#inspo_text_p = "#{result["text_content"]}"
+    h3 Artist: #{result["artist_name"]}
+    h3 Album: #{result["album_name"]}
