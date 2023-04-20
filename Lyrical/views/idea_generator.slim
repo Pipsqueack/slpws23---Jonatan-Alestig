@@ -1,1 +1,13 @@
-h1 Ideagenerator!
+h1 Ideagenerator
+p Press the button to generate your idea
+form action='/generate_idea' method='post' 
+    input type="submit" value="Generate Idea"
+
+- idea = session[:idea]
+
+- if session[:idea] != nil
+    h3 Your genre: #{idea[0]}
+    h3 Your theme: #{idea[1]}
+    h3 Your lyrics: #{idea[2]}
+
+            

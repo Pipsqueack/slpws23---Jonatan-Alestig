@@ -9,6 +9,13 @@ form action='/new_text' method='post'
     label for="submit" <br>
     input type="submit" name="submit" value="Submit"
 
+- idea = session[:idea]
+
+- if session[:idea] != nil
+    h3 Your genre: #{idea[0]}
+    h3 Your theme: #{idea[1]}
+    h3 Your lyrics: #{idea[2]}
+
 h2 Your lyrics
 section#your_lyrics
     -result.each do |lyrics|

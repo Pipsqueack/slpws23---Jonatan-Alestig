@@ -4,6 +4,8 @@ require 'slim'
 require 'sqlite3'
 require 'bcrypt'
 
+require_relative 'arrays.rb'
+
 enable :sessions
 
 get('/')  do
@@ -81,17 +83,6 @@ post('/logout') do
     redirect('/')
 end
 
-
-helpers do
-    def inspo_func
-        db = SQLite3::Database.new("db/data.db")
-        db.results_as_hash = true
-        result = db.execute("SELECT * FROM Inspo_text WHERE inspo_text_id = ?", rand(1..5)).first
-
-        return result
-    end
-end
-
 get('/your_lyrics') do
     db = SQLite3::Database.new("db/data.db")
     db.results_as_hash = true
@@ -122,36 +113,33 @@ end
     redirect('/your_lyrics') 
   end
   
-  post('/albums/:id/delete') do
-    id = params[:id].to_i
-    db = SQLite3::Database.new("db/data.db")
-    db.execute("DELETE FROM albums WHERE AlbumId = ?",id)
-    redirect('/albums')
+  get('/idea_generator') do 
+    slim(:idea_generator)
   end
-  
-  post('/albums/:id/update') do
-    id = params[:id].to_i
-    title = params[:title]
-    artist_id = params[:artistId].to_i
-    db = SQLite3::Database.new("db/data.db")
-    db.execute("UPDATE Albums SET Title = ?,ArtistId = ? WHERE AlbumId = ?",title, artist_id, id)
-    redirect('/albums')
+
+  post('/generate_idea') do
+    if session[:idea] != ""
+      session.delete(:idea)
+    end
+    generateWords()
+    redirect('/idea_generator')
   end
-  
-  get('/albums/:id/edit') do
-    id = params[:id].to_i
-    db = SQLite3::Database.new("db/data.db")
-    db.results_as_hash = true
-    result = db.execute("SELECT * FROM albums WHERE AlbumId = ?",id).first
-    slim(:"/albums/edit",locals:{result:result})
-  end
-  
-  get('/albums/:id') do
-    id = params[:id].to_i
-    db = SQLite3::Database.new("db/data.db")
-    db.results_as_hash = true
-    result = db.execute("SELECT * FROM albums WHERE AlbumId = ?",id).first
-    result2 = db.execute("SELECT Name FROM Artists WHERE ArtistID IN (SELECT ArtistID FROM Albums WHERE AlbumID = ?)", id).first
-    slim(:"albums/show",locals:{result:result,result2:result2})
+
+  helpers do
+    def inspo_func
+        db = SQLite3::Database.new("db/data.db")
+        db.results_as_hash = true
+        result = db.execute("SELECT * FROM Inspo_text WHERE inspo_text_id = ?", rand(1..5)).first
+
+        return result
+    end
+
+    def generateWords()
+      random_words = []
+      random_words.append(musicGenres().sample)
+      random_words.append(themes().sample)
+      random_words.append(lyrics().sample)
+      session[:idea] = random_words
+    end
   end
 
