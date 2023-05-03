@@ -13,13 +13,13 @@ html lang="en"
             a href="/" Home
             a href="/your_lyrics" Begin writing
             a href="/idea_generator" Ideagenerator
-        -if session[:user_id] != nil
-          h1 #{session[:username]}
-          form action='/logout' method='post'
-              input type="submit" name="logout" value="Logout"        
-        -else 
-          a href="/sign_up" Sign up
-          a href="/login" Login 
+            -if session[:user_id] != nil
+              h1 #{session[:username]}
+              form action='/logout' method='post'
+                  input type="submit" name="logout" value="Logout"        
+            -else 
+              a href="/sign_up" Sign up
+              a href="/login" Login 
     div#main
       h2.alert #{session[:alert]}
 
@@ -30,4 +30,3 @@ html lang="en"
       ==yield
 
     footer 
-      p footertext

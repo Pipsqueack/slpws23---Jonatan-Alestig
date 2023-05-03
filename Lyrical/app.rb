@@ -5,6 +5,7 @@ require 'sqlite3'
 require 'bcrypt'
 
 require_relative 'arrays.rb'
+require_relative 'model.rb'
 
 enable :sessions
 
@@ -90,7 +91,7 @@ get('/your_lyrics') do
     slim(:"your_lyrics/index",locals:{result:result})
 end
   
-  post('/new_text') do
+  post('/your_lyrics/new') do
 
 
     text_id = params[:text_id]

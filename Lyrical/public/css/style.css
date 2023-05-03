@@ -1,17 +1,16 @@
 #inspo_text {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 0px;
-    width: 25vw;
-    border: 2px black solid;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+  border: 2px black solid;
+
 }
 
-.alert {
-  color: red;
+#main {  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 87vh;
 }
+
 
 #your_lyrics {
   display: flex;
@@ -28,11 +27,6 @@
   overflow-wrap: break-word;
 }
 
-#main {
-    width: 100%;
-    height: 80vh;    
-}
-
 input[type=text] {
     width: 30vw;
     padding: 12px 20px;
@@ -40,9 +34,58 @@ input[type=text] {
     box-sizing: border-box;
   }
 
-  input[type=password] {
+input[type=password] {
     width: 30vw;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 100vh;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  height: 8vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+nav a:hover {
+  background-color: #555;
+}
+
+h2.alert {
+  padding: 10px;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  height: 5vh;
+}
